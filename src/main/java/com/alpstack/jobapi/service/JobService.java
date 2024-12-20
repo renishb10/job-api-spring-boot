@@ -20,6 +20,11 @@ public class JobService {
         return jobRepo.findById(jobId).orElse(null);
     }
 
+    public List<JobPost> search(String keyword) {
+        System.out.println("Hit");
+        return jobRepo.findByPostProfileContainingOrPostDescContaining(keyword, keyword);
+    }
+
     public JobPost addJob(JobPost job) {
         return jobRepo.save(job);
     }
