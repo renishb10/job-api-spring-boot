@@ -41,4 +41,10 @@ public class JobController {
         jobService.deleteJob(jobId);
         return "Deleted";
     }
+
+    @GetMapping("seed")
+    public String seedData() {
+        jobService.load();
+        return "Seeded!";
+    }
 }
