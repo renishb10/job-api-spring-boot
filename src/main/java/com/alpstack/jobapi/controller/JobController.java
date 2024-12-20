@@ -3,20 +3,22 @@ package com.alpstack.jobapi.controller;
 import com.alpstack.jobapi.model.JobPost;
 import com.alpstack.jobapi.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "https://localhost:3000")
-
+@RequestMapping("/api")
 public class JobController {
     @Autowired
     private JobService jobService;
 
     @GetMapping("jobs")
-    public List<JobPost> getAllJobs() {
-        return jobService.getAllJobs();
+    public ResponseEntity<List<JobPost>> getAllJobs() {
+        return new ResponseEntity<>(jobService.getAllJobs(), HttpStatus.OK);
     }
 
     @GetMapping("jobs/{jobId}")
